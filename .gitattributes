@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.woff2 binary
+
+*.webp binary
+fonts/*-OFL.txt whitespace=-trailing-space

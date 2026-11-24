@@ -1,0 +1,254 @@
+.ops {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.085'/%3E%3C/svg%3E");
+}
+.material-demo {
+  width: min(420px, 100%);
+  min-height: 150px;
+  border-radius: 28px;
+  padding: 25px;
+  display: grid;
+  align-content: space-between;
+  gap: 30px;
+  box-shadow: var(--shadow);
+  background: var(--pearl);
+}
+.material-demo strong {
+  font-size: 25px;
+  text-transform: capitalize;
+}
+.material-demo.graphite-surface {
+  background: var(--grain), var(--graphite);
+  color: white;
+}
+.graphite-surface .eyebrow {
+  color: #d6dde0;
+}
+.material-demo.raised-surface,
+.motion-item {
+  background: var(--raised);
+  box-shadow: var(--lift);
+}
+.material-demo.hatched {
+  background: var(--hatch), var(--soft);
+}
+.dot-grid {
+  background:
+    var(--dots) 0 0 / 10px 10px,
+    var(--pearl);
+}
+.accent-glow strong:before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+  border: 1px solid #13141633;
+}
+.motion-stack {
+  display: grid;
+  gap: 10px;
+  width: min(320px, 100%);
+}
+.motion-item {
+  padding: 14px 20px;
+  border-radius: 14px;
+}
+.swatches,
+.dimensions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(135px, 100%), 1fr));
+  gap: 10px;
+  width: 100%;
+}
+.swatches div,
+.dimensions div {
+  background: var(--raised);
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: var(--lift);
+}
+.swatches i,
+.dimensions i {
+  display: block;
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #13141614;
+}
+.swatches code,
+.dimensions code,
+.type-sheet code {
+  font: 11px var(--font-mono);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.swatches b {
+  display: block;
+  margin-top: 8px;
+}
+.dimensions i {
+  width: 52px;
+  background: var(--graphite);
+  margin-bottom: 8px;
+}
+.type-sheet {
+  display: grid;
+  width: 100%;
+}
+.type-sheet > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #cdd2d5;
+}
+.chart-example {
+  width: 100%;
+}
+.chart-example .chart-well {
+  aspect-ratio: 680/325;
+}
+.chart-example .actions,
+.chart-example > .segments {
+  margin: 8px 0;
+}
+.sample {
+  padding: 20px;
+  background: linear-gradient(135deg, var(--ground-top), var(--ground-bottom));
+  min-height: 150px;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 12px;
+}
+.sample > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.sample > .rail {
+  width: 76px;
+  min-height: 820px;
+}
+.sample > .navigator {
+  width: 272px;
+  min-height: 900px;
+}
+.sample > .stage,
+.sample > .card,
+.sample > .topbar,
+.sample > .insight,
+.sample > .flows,
+.sample > .chart-example,
+.sample > .dashboard {
+  width: 100%;
+}
+.sample > .nav-item {
+  width: min(255px, 100%);
+}
+.sample > .stat-block {
+  width: 230px;
+}
+.sample > .approval {
+  width: min(410px, 100%);
+}
+.sample > .dashboard {
+  max-width: none;
+}
+.sample[data-id="screen"] {
+  padding: 0;
+  display: block;
+}
+.sample[data-id="rail"],
+.sample[data-id="navigator"] {
+  max-height: 610px;
+  overflow: auto;
+}
+@media (max-width: 1050px) {
+  .sample .primary .card-head {
+    flex-wrap: wrap;
+  }
+  .sample .metric-grid {
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .sample .topbar,
+  .sample .insight {
+    flex-wrap: wrap;
+  }
+  .sample .stat-block .number {
+    font-size: 90px;
+  }
+}
+@media (max-width: 680px) {
+  .sample {
+    padding: 14px;
+  }
+  .sample .card {
+    padding: 16px;
+  }
+  .sample .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .sample .chart-well {
+    min-height: 155px;
+  }
+  .sample .plot {
+    min-height: 150px;
+  }
+  .sample .topbar {
+    display: grid;
+  }
+  .sample .insight p {
+    min-width: 165px;
+  }
+  .sample .primary .legend {
+    margin: 0;
+  }
+  .sample .primary .card-head {
+    justify-content: flex-start;
+  }
+  .sample .primary .card-head .push {
+    display: none;
+  }
+  .sample .queue-note {
+    font-size: 10px;
+  }
+  .sample .flows .run-bars {
+    gap: 1px;
+  }
+  .sample .run-bars i {
+    width: 2px;
+  }
+  .sample .flow-id {
+    gap: 4px;
+  }
+  .sample .flow-id .tile {
+    display: none;
+  }
+  .sample .flows {
+    min-width: 330px;
+  }
+  .sample .type-sheet span {
+    overflow-wrap: anywhere;
+  }
+  .sample .chart-example .chart-well {
+    aspect-ratio: auto;
+  }
+}
+
+.token-copy {
+  display: block;
+  border: 0;
+  padding: 4px 0;
+  background: transparent;
+  text-align: left;
+  color: var(--ink-2);
+  font: 11px var(--font-mono);
+}
+.token-copy:hover {
+  text-decoration: underline;
+}

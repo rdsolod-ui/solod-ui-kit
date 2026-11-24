@@ -1,0 +1,284 @@
+:root,
+.ops {
+  --chart-front: #e4e7eb;
+  --chart-side-a: #e1e4e9;
+  --chart-side-b: #bfc4cb;
+  --chart-top: #e9ecf0;
+  --chart-ridge: #c9cdd2;
+  --chart-lit: #fff;
+  --line: #c8ced4;
+  --focus: #3669ae;
+  --on-accent: #1a2319;
+  --font-ui: "Manrope", sans-serif;
+}
+:root[data-theme="dark"],
+:root[data-theme="dark"] .ops,
+.ops[data-theme="dark"] {
+  color-scheme: dark;
+  --ground-top: #151b23;
+  --ground-bottom: #10151c;
+  --stage-top: #202832;
+  --stage-bottom: #1b222b;
+  --panel-top: #29323d;
+  --panel-bottom: #202933;
+  --card-top: #303945;
+  --card-bottom: #252e39;
+  --raised-top: #414d5c;
+  --raised-bottom: #343e4b;
+  --well: #1b232e;
+  --soft: #333e4b;
+  --ink: #f1f4f8;
+  --ink-2: #cad2dd;
+  --ink-3: #aebbcb;
+  --graphite-top: #333d48;
+  --graphite-bottom: #171d25;
+  --ember: #ff826d;
+  --line: #506070;
+  --focus: #98c4fa;
+  --chart-front: #73849a;
+  --chart-lit: #d2dce8;
+  --chart-side-a: #65768c;
+  --chart-side-b: #425368;
+  --chart-ridge: #8193a6;
+  --chart-top: #aab8ca;
+  --rim: inset 0 1px 0 #ffffff1b;
+  --lift: var(--rim), 0 3px 9px #080d154d;
+  --shadow: var(--rim), 0 12px 30px -15px #05090fba;
+  --hatch: repeating-linear-gradient(
+    135deg,
+    transparent 0 4px,
+    #e5edff10 4px 5px
+  );
+  --dots: radial-gradient(#c8d7e62e 0.85px, transparent 1.05px);
+}
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-ui);
+}
+button,
+input,
+select,
+textarea {
+  color: inherit;
+}
+:focus-visible {
+  outline-color: var(--focus);
+}
+.ops .eyebrow,
+.nav-group h3,
+.legend span,
+.flows th {
+  letter-spacing: 0.055em;
+}
+.topbar h1 {
+  font-size: 42px;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+}
+.stat-block .number {
+  font-size: 104px;
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+.delta {
+  font-size: 12px;
+  gap: 6px;
+}
+.stat-block dl {
+  margin-top: 12px;
+}
+.ops .flow-name,
+.approval strong,
+.ops h2 {
+  line-height: 1.35;
+}
+.ops .flow-name {
+  text-align: left;
+}
+.ops .metric-grid {
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 24px;
+}
+.flow-id {
+  gap: 8px;
+  margin-right: 8px;
+}
+.flows th:nth-child(1) {
+  width: 43%;
+}
+.flows th:nth-child(2) {
+  width: 32%;
+}
+.flows .run-bars {
+  display: inline-grid;
+  grid-template-columns: repeat(24, minmax(1px, 1fr));
+  width: min(144px, 98%);
+  gap: 2px;
+}
+.flows .run-bars i {
+  width: 100%;
+  max-width: 4px;
+}
+.primary-title {
+  gap: 14px;
+}
+.primary .legend {
+  gap: 9px;
+}
+.primary-tools {
+  gap: 8px;
+}
+.primary-tools .link-btn,
+.topbar [data-do="new"],
+.insight [data-do="pause"],
+.trace-btn {
+  min-width: 0;
+}
+.primary .legend span {
+  font-size: 10px;
+  letter-spacing: 0.025em;
+  gap: 5px;
+}
+.queue h2 {
+  font-size: 17px;
+}
+.approval .actions {
+  gap: 6px;
+}
+.approval .actions .btn {
+  padding-inline: 10px;
+  gap: 5px;
+}
+.flow-id small {
+  line-height: 1.35;
+}
+.queue-note {
+  overflow-wrap: anywhere;
+}
+.ops .plot text {
+  fill: var(--ink-2);
+}
+.ops .plot .row-name,
+.ops .plot .incident-label {
+  fill: var(--ink);
+}
+.ops .plot .row-total {
+  fill: var(--ink-3);
+}
+.plot .row-name {
+  font-weight: 500;
+}
+.count,
+.delta b,
+.chip.wait {
+  color: var(--on-accent);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .dashboard {
+  background: linear-gradient(125deg, var(--ground-top), var(--ground-bottom));
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  :is(.search, .tree, .segments, .chart-well) {
+  background: linear-gradient(145deg, var(--well), var(--panel-bottom));
+  box-shadow:
+    inset 0 1px 3px #0004,
+    var(--rim);
+  border-color: #62728666;
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .card,
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .approval,
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) dialog.ops-dialog {
+  border-color: #63748955;
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .profile {
+  background: var(--soft);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .profile b {
+  background: var(--well);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .nav-rule {
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  :is(
+    .tabs,
+    .flows th,
+    .flows td,
+    .type-sheet > div,
+    .stat-block dl div,
+    .tree .child:before,
+    .link-btn,
+    .tiny,
+    .profile-menu
+  ) {
+  border-color: var(--line);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  .tabs
+  button[aria-pressed="true"]:after,
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  .run-bars
+  i:not(.bad, .pending, .current) {
+  background: var(--ink);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  .meter
+  i:not(.hot, .future) {
+  background: var(--ink-2);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .meter i.future {
+  background: var(--line);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .insight-sheen {
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    #ffffff12 50%,
+    transparent 65%
+  );
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"])
+  .search
+  input::placeholder {
+  color: var(--ink-3);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .dimensions i {
+  background: var(--ink-2);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .ops-dialog input {
+  background: var(--well);
+  border-color: var(--line);
+}
+:is(:root[data-theme="dark"], .ops[data-theme="dark"]) .toast {
+  border: 1px solid var(--line);
+}
+@media (max-width: 680px) {
+  .sample .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .sample .primary-tools {
+    flex-wrap: wrap;
+  }
+  .sample .tabs {
+    gap: 10px;
+  }
+  .sample .flow-card .table-wrap {
+    width: 100%;
+  }
+  .sample .flows {
+    min-width: 420px;
+  }
+  .sample .actions,
+  .sample .topbar .actions {
+    flex-wrap: wrap;
+  }
+  .sample .primary {
+    height: auto;
+  }
+}
+
+.approval .actions .btn {
+  padding-inline: 8px;
+}
