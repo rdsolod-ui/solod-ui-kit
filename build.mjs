@@ -1,6 +1,7 @@
 import { readFile, writeFile, cp, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { head, pages, sitemap } from "./seo.mjs";
 import { specs } from "./specs.mjs";
 import * as views from "./views.mjs";
 import * as icons from "./icons.mjs";
@@ -58,39 +59,42 @@ await write(
   "const kitAssets=" + JSON.stringify({ css, font, rights, sources }) + ";",
 );
 await write("kit.js", js + "\n" + library);
-const pages = {
-  index: ["solod-ui-kit — Рабочий экран", "ru", "preview-page"],
-  guide: ["solod-ui-kit — Справочник", "ru", "doc-page"],
-};
-for (const [page, [title, lang, cls]] of Object.entries(pages)) {
-  const shell = await read(page + ".body.html");
-  const content =
-    page === "index"
-      ? shell.replace("<!--BOARD-->", views.dashboard(data.seed()))
-      : shell;
-  await write(
-    page + ".html",
-    '<!doctype html>\n<html lang="' +
-      lang +
-      '"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#202225"><title>' +
-      title +
-      '</title><script src="theme.js"></script><link rel="icon" href="icon.svg"><link rel="stylesheet" href="fonts/fonts.css"><link rel="stylesheet" href="kit.css"><link rel="stylesheet" href="site.css"><body class="' +
-      cls +
-      '">' +
-      content +
-      '<script src="kit.js"></script>' +
-      (page === "guide" ? '<script src="assets.js"></script>' : "") +
-      '<script src="' +
-      page +
-      '.js"></script></body></html>',
-  );
+function contents(items) {
+  const groups = [...new Set(items.map(item => item.group))];
+  return groups.map(group => {
+    const links = items.filter(item => item.group === group).map(item =>
+      `<a id="${data.esc(item.id)}" href="#${data.esc(item.id)}"><span>${data.esc(item.title)}</span><small>${data.esc(item.description)}</small></a>`
+    );
+    return `<section><h2>${data.esc(group)}</h2>\n${links.join("\n")}</section>`;
+  }).join("\n");
 }
+
+for (const [page, meta] of Object.entries(pages)) {
+  const isGuide = page === "guide";
+  const shell = await read(page + ".body.html");
+  const content = isGuide
+    ? shell.replace("<!--COUNT-->", String(specs.length)).replace("<!--ENTRIES-->", contents(specs))
+    : shell.replace("<!--BOARD-->", views.dashboard(data.seed()));
+  const scripts = isGuide ? ["kit.js", "assets.js", "guide.js"] : ["kit.js", "index.js"];
+  await write(page + ".html", `<!doctype html>
+<html lang="ru"><head>
+${head(meta, specs.length)}
+</head><body class="${isGuide ? "doc-page" : "preview-page"}">
+${content}
+${scripts.map(src => `<script src="${src}"></script>`).join("\n")}
+</body></html>\n`);
+}
+await write("sitemap.xml", sitemap());
+await cp(path.join(base, "social"), path.join(out, "social"), { recursive: true });
 await write("kit.css", css);
 for (const name of [
   "site.css",
   "index.js",
   "guide.js",
   "icon.svg",
+  "favicon.ico",
+  "favicon-96.png",
+  "apple-touch-icon.png",
   "theme.js",
   "element-map.csv",
 ])

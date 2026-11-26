@@ -181,7 +181,7 @@ body {
 .doc-main > header {
   margin: 6px 0 22px;
 }
-.doc-main h1 {
+.doc-main #title {
   font-size: clamp(30px, 4vw, 48px);
   line-height: 1.1;
   letter-spacing: -0.04em;
@@ -708,4 +708,19 @@ body {
   .control-dock .family button[data-accent] {
     padding: 0 7px;
   }
+}
+
+.guide-intro { grid-column: 1 / -1; }
+.guide-intro h1 { margin: 0; font-size: clamp(24px, 3vw, 38px); letter-spacing: -.045em; line-height: 1.12; }
+.guide-intro p { margin: 7px 0 0; color: var(--ink-2); }
+.doc-nav a { scroll-margin-top: 80px; }
+.doc-nav a small { display: block; line-height: 1.45; margin-top: 3px; }
+.doc-nav a[hidden], .guide-ready .doc-nav a:not([aria-current]) small { display: none; }
+html:not(.guide-ready) .doc-layout { display: block; max-width: 900px; }
+html:not(.guide-ready) .doc-nav { display: block; position: static; max-height: none; overflow: visible; }
+html:not(.guide-ready) .doc-page :is(.nav-toggle,.doc-nav label,.live-part) { display: none; }
+.preview-title small { display: block; color: #c3c7c9; font-size: 12px; }
+@media (max-width: 800px) {
+  .guide-intro { margin: 5px 0 16px; }
+  .preview-head .preview-title { display: flex; width: 100%; gap: 8px; align-items: baseline; order: -1; }
 }

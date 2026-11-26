@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" font-family="Segoe UI, sans-serif">
+  <title>Справочник компонентов · solod-ui-kit</title>
+  <rect width="1200" height="630" fill="#e7eae2"/>
+  <g transform="translate(507 35)">
+    <image xlink:href="../icon.svg" width="40" height="40"/>
+    <text x="52" y="29" font-size="29" font-weight="600" fill="#252c29">solod-ui-kit</text>
+  </g>
+  <g text-anchor="middle" fill="#202723" font-weight="600" font-size="75" letter-spacing="-3">
+    <text x="600" y="164">Справочник</text>
+    <text x="600" y="243">компонентов</text>
+  </g>
+  <rect x="210" y="288" width="780" height="282" rx="23" fill="#171e25"/>
+  <clipPath id="crop"><rect x="230" y="311" width="324" height="235" rx="11"/></clipPath>
+  <g clip-path="url(#crop)"><image xlink:href="../docs/screenshots/guide-dark.webp" x="-13" y="116" width="1094.4" height="729.6"/></g>
+  <line x1="562" y1="312" x2="562" y2="548" stroke="#424b55"/>
+  <g font-family="Consolas, monospace" font-size="24" fill="#d7deeb">
+    <text x="588" y="357" font-size="18" fill="#a8d7bd">HTML · типографика</text>
+    <text x="588" y="417">&lt;span style="font:</text>
+    <text x="588" y="451" fill="#c1e879">  200 104px/1</text>
+    <text x="588" y="485">  var(--font-ui)"&gt;</text>
+    <text x="588" y="519">  340&lt;/span&gt;</text>
+  </g>
+</svg>

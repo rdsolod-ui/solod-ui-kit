@@ -2,4 +2,6 @@
 *.woff2 binary
 
 *.webp binary
+*.ico binary
+*.png binary
 fonts/*-OFL.txt whitespace=-trailing-space

@@ -81,36 +81,24 @@ let spec = null,
   cssCache = "",
   resizeWatch = null,
   ticket = 0;
-const groups = [...new Set(specs.map((x) => x.group))];
+const guideTitle = document.title;
 function navigation() {
-  const q = $("find").value.toLowerCase().trim();
-  $("entries").innerHTML =
-    groups
-      .map((group) => {
-        const items = specs.filter(
-          (v) =>
-            v.group === group &&
-            [v.title, v.description, group].join(" ").toLowerCase().includes(q),
-        );
-        return items.length
-          ? "<h2>" +
-              esc(group) +
-              "</h2>" +
-              items
-                .map(
-                  (v) =>
-                    '<a href="#' +
-                    v.id +
-                    '" ' +
-                    (v.id === spec?.id ? 'aria-current="page"' : "") +
-                    ">" +
-                    esc(v.title) +
-                    "</a>",
-                )
-                .join("")
-          : "";
-      })
-      .join("") || "<p>Совпадений нет</p>";
+  const query = $("find").value.toLowerCase().trim();
+  let found = false;
+  for (const group of $("entries").children) {
+    let matches = false;
+    const category = group.querySelector("h2").textContent.toLowerCase();
+    for (const link of group.querySelectorAll("a")) {
+      const text = Array.from(link.children, child => child.textContent).join(" ");
+      link.hidden = !(category + " " + text.toLowerCase()).includes(query);
+      if (link.id === spec.id) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+      matches ||= !link.hidden;
+    }
+    group.hidden = !matches;
+    found ||= matches;
+  }
+  $("empty-search").hidden = found;
 }
 function fitFrame() {
   const d = frame.contentDocument;
@@ -286,7 +274,7 @@ function route() {
   $("group").textContent = spec.group;
   $("title").textContent = spec.title;
   $("description").textContent = spec.description;
-  document.title = spec.title + " · solod-ui-kit";
+  document.title = location.hash && key === spec.id ? spec.title + " · " + guideTitle : guideTitle;
   navigation();
   options();
   loadFrame();
@@ -355,6 +343,10 @@ window.addEventListener("solodtheme", (e) => {
     loadFrame();
   }
 });
+if (location.protocol === "file:") {
+  for (const link of document.querySelectorAll('.doc-top a[href="./"]')) link.href = "index.html";
+}
+document.documentElement.classList.add("guide-ready");
 window.addEventListener("hashchange", route);
 window.addEventListener("resize", fitFrame);
 route();
